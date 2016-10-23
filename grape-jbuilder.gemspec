@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "grape", ">= 0.3"
   spec.add_dependency "jbuilder"
   spec.add_dependency "tilt"
-  spec.add_dependency "tilt-jbuilder", ">= 0.4.0"
+  spec.add_dependency "tilt-jbuilder", :git => "https://github.com/larryzhao/tilt-jbuilder.git", :branch => "add-partial-cache"
   spec.add_dependency "i18n"
 
   spec.add_development_dependency "bundler"
