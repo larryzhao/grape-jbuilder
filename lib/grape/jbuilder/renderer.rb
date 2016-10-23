@@ -10,8 +10,15 @@ module Grape
           raise "Use Rack::Config to set 'api.tilt.root' in config.ru"
         end
 
-        engine = ::Tilt.new file, nil, view_path: view_path
-        engine.render scope, locals
+        if GJ_TILT_CACHE.nil?
+          engine = ::Tilt.new file, nil, view_path: view_path
+          engine.render scope, locals
+        else
+          engine = GJ_TILT_CACHE.fetch(file, nil, view_path: view_path) do
+                    ::Tilt.new file, nil, view_path: view_path
+                   end
+          engine.render scope, locals
+        end
       end
 
       private
